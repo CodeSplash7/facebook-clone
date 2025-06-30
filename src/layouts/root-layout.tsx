@@ -1,3 +1,5 @@
+import "@/style/globals.css"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="*:box-border w-full h-fit">{children}</body>
     </html>
   );
 }
+
