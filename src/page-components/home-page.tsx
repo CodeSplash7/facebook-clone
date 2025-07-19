@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PostPrompt from "@/components/PostPrompt";
-import Posts from "@/components/Posts";
+import Posts from "@/components/Posts/Posts";
 
 export default function HomePage() {
   return (
