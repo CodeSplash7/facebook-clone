@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import LikeBtn from "./LikeBtn";
+import { Reaction } from "./reactions";
 
 export default function PostActions({
   onShowComments,
@@ -6,7 +7,9 @@ export default function PostActions({
   onShowReactions,
   onHideReactions,
   showReactions,
+  onReact,
 }: {
+  onReact: (reaction: Reaction) => void;
   onShowComments: () => void;
   onShowShare: () => void;
   onShowReactions: () => void;

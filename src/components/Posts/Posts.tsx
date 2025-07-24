@@ -5,6 +5,7 @@ import Post from "./Post";
 import PostOptionsModal from "./PostOptionsModal";
 import CommentsModal from "./CommentsModal";
 import ShareModal from "./ShareModal";
+import { Reaction } from "./reactions";
 
 export default function Posts() {
   const [posts, setPosts] = useState(postsData);
@@ -19,12 +20,29 @@ export default function Posts() {
     setPosts(posts.filter((post) => post.id !== postId));
   };
 
+  const handleAddLike = (postId: number, reaction: Reaction) => {
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            likes: { ...post.likes, [reaction]: post.likes[reaction] + 1 },
+          };
+        }
+        return post;
+      }),
+    );
+  };
+
   return (
     <>
       <div className="flex flex-col w-full h-fit gap-4">
         {posts.map((post) => (
           <Post
             key={post.id}
+            onReact={(reaction: Reaction) => {
+              handleAddLike(post.id, reaction);
+            }}
             postData={post}
             onShowOptions={() => setShowOptionsModal(post.id)}
             onClosePost={() => handleClosePost(post.id)}

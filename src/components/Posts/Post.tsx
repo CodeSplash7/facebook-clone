@@ -3,6 +3,7 @@ import PostHeader from "./PostHeader";
 import PostMedia from "./PostMedia";
 import PostStats from "./PostStats";
 import PostText from "./PostText";
+import { Reaction } from "./reactions";
 import { PostData } from "./types";
 
 export default function Post({
@@ -14,9 +15,11 @@ export default function Post({
   onShowReactions,
   onHideReactions,
   showReactions,
+  onReact,
 }: {
   postData: PostData;
   onShowOptions: () => void;
+  onReact: (reaction: Reaction) => void;
   onClosePost: () => void;
   onShowComments: () => void;
   onShowShare: () => void;
@@ -36,6 +39,7 @@ export default function Post({
       <PostStats postData={postData} />
       <div className="h-px bg-gray-200 mx-4"></div>
       <PostActions
+        onReact={onReact}
         onShowComments={onShowComments}
         onShowShare={onShowShare}
         onShowReactions={onShowReactions}
