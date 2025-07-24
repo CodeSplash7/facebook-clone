@@ -6,7 +6,15 @@ export type PostData = {
   isRecommended: boolean;
   text: string;
   media: string;
-  likes: number;
+  likes: {
+    like: number;
+    love: number;
+    laugh: number;
+    care: number;
+    wow: number;
+    sad: number;
+    angry: number;
+  };
   comments: number;
   shares: number;
 };
