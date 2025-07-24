@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 export default function PostActions({
   onShowComments,
   onShowShare,
@@ -11,13 +13,29 @@ export default function PostActions({
   onHideReactions: () => void;
   showReactions: boolean;
 }) {
+  const likeBtnRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let hoverInTimeout: NodeJS.Timeout;
+    let hoverOutTimeout: NodeJS.Timeout;
+
+    let hasHoveredEnough = false;
+    likeBtnRef.current?.addEventListener("mouseenter", () => {
+      clearTimeout(hoverOutTimeout);
+      hasHoveredEnough = true;
+      hoverInTimeout = setTimeout(onShowReactions, 500);
+    });
+
+    likeBtnRef.current?.addEventListener("mouseleave", async () => {
+      clearTimeout(hoverInTimeout);
+      if (hasHoveredEnough) hoverOutTimeout = setTimeout(onHideReactions, 500);
+      hasHoveredEnough = false;
+    });
+  }, []);
+
   return (
     <div className="px-4 py-1 flex justify-around relative">
-      <div
-        className="relative flex-1"
-        onMouseEnter={onShowReactions}
-        onMouseLeave={onHideReactions}
-      >
+      <div ref={likeBtnRef} className="relative flex-1">
         {showReactions && (
           <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg border p-2 flex gap-1 z-10 text-[30px]">
             <button className="reaction-btn w-10 h-10 rounded-full hover:scale-110 transition-transform">
