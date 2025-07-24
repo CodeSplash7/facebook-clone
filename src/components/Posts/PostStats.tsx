@@ -1,3 +1,4 @@
+import calculateLikes from "./calculateLikes";
 import { PostData } from "./types";
 
 export default function PostStats({ postData }: { postData: PostData }) {
@@ -15,7 +16,7 @@ export default function PostStats({ postData }: { postData: PostData }) {
             😂
           </div>
         </div>
-        <span className="ml-1">{postData.likes.toLocaleString()}</span>
+        <span className="ml-1">{calculateLikes(postData.likes)}</span>
       </div>
       <div className="flex gap-4">
         <span className="cursor-pointer hover:underline">
