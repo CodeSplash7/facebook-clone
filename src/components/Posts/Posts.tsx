@@ -31,12 +31,10 @@ export default function Posts() {
             onShowComments={() => setShowCommentsModal(post.id)}
             onShowShare={() => setShowShareModal(post.id)}
             onShowReactions={() => {
-              setTimeout(() => {
-                setShowReactions(post.id);
-              }, 1000);
+              setShowReactions(post.id);
             }}
             onHideReactions={() => {
-              setTimeout(() => setShowReactions(null), 1000);
+              setShowReactions(null);
             }}
             showReactions={showReactions === post.id}
           />
