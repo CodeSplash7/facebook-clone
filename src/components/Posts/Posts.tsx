@@ -3,7 +3,7 @@ import { useState } from "react";
 import postsData from "./postsData";
 import Post from "./Post";
 import PostOptionsModal from "./PostOptionsModal";
-import CommentsModal from "./CommentsModal";
+import CommentsModal from "@components/Comments/CommentsModal";
 import ShareModal from "./ShareModal";
 import { Reaction } from "./reactions";
 

@@ -1,0 +1,66 @@
+import { Comment } from "@components/Comments/types";
+
+export const mockComments: Comment[] = [
+  {
+    id: 1,
+    user: "Alice Johnson",
+    text: "Amazing shot! 📸 This is absolutely beautiful!",
+    time: "3h",
+    likes: 24,
+    isLiked: true,
+    avatar: "bg-pink-500",
+    replies: [
+      {
+        id: 101,
+        user: "John Doe",
+        text: "I totally agree! The lighting is perfect",
+        time: "2h",
+        likes: 5,
+        isLiked: false,
+        avatar: "bg-blue-500",
+        replyingTo: "Alice Johnson",
+      },
+      {
+        id: 102,
+        user: "Sarah Wilson",
+        text: "Same! Where can I learn photography like this?",
+        time: "1h",
+        likes: 3,
+        isLiked: true,
+        avatar: "bg-green-500",
+        replyingTo: "Alice Johnson",
+      },
+    ],
+  },
+  {
+    id: 2,
+    user: "Bob Smith",
+    text: "Love this! Where was this taken? I need to visit this place",
+    time: "2h",
+    likes: 15,
+    isLiked: false,
+    avatar: "bg-orange-500",
+    replies: [],
+  },
+  {
+    id: 3,
+    user: "Carol Davis",
+    text: "Beautiful colors 🌅",
+    time: "1h",
+    likes: 8,
+    isLiked: false,
+    avatar: "bg-purple-500",
+    replies: [
+      {
+        id: 103,
+        user: "Mike Brown",
+        text: "The sunset timing must have been perfect!",
+        time: "45m",
+        likes: 2,
+        isLiked: false,
+        avatar: "bg-red-500",
+        replyingTo: "Carol Davis",
+      },
+    ],
+  },
+];
