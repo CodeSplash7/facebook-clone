@@ -70,11 +70,10 @@ export default function CommentsModal({
 
   return (
     <div className="fixed inset-0 bg-white/50 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-2xl h-[95vh] flex flex-col shadow-xl border border-gray-200 rounded-lg overflow-y-auto">
+      <div className="bg-white w-full max-w-2xl h-[95vh] flex flex-col shadow-xl border border-gray-200 rounded-lg">
         <ModalTitle postData={postData} onClose={onClose} />
 
-        {/* Post component */}
-        <div className="border-b border-gray-200">
+        <div className="w-full h-full flex flex-col overflow-y-auto">
           <Post
             isModal
             postData={postData}
@@ -87,34 +86,33 @@ export default function CommentsModal({
             showReactions={showReactions}
             onReact={onReact}
           />
+
+          {/* Comments section */}
+          <div className="flex-1 flex flex-col ">
+            <SortDropdown
+              setShowSortDropdown={setShowSortDropdown}
+              showSortDropdown={showSortDropdown}
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+            />
+            <CommentsList
+              comments={mockComments}
+              replyingToComment={replyingToComment}
+              setReplyingToComment={setReplyingToComment}
+              expandedReplies={expandedReplies}
+              toggleReplies={toggleReplies}
+              setReplyText={setReplyText}
+              replyText={replyText}
+              handleSendReply={handleSendReply}
+            />
+          </div>
         </div>
 
-        {/* Comments section */}
-        <div className="flex-1 flex flex-col ">
-          <SortDropdown
-            setShowSortDropdown={setShowSortDropdown}
-            showSortDropdown={showSortDropdown}
-            sortOption={sortOption}
-            setSortOption={setSortOption}
-          />
-          {/* Comments list */}
-          <CommentsList
-            comments={mockComments}
-            replyingToComment={replyingToComment}
-            setReplyingToComment={setReplyingToComment}
-            expandedReplies={expandedReplies}
-            toggleReplies={toggleReplies}
-            setReplyText={setReplyText}
-            replyText={replyText}
-            handleSendReply={handleSendReply}
-          />
-          {/* Comment input */}
-          <CommentInput
-            commentText={commentText}
-            setCommentText={setCommentText}
-            handleSendComment={handleSendComment}
-          />
-        </div>
+        <CommentInput
+          commentText={commentText}
+          setCommentText={setCommentText}
+          handleSendComment={handleSendComment}
+        />
       </div>
     </div>
   );
