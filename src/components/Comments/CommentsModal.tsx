@@ -8,13 +8,30 @@ import { mockComments } from "./commentsData";
 import MainComment from "./MainComment";
 import RepliesSection from "./RepliesSection";
 import ReplyInput from "./ReplyInput";
+import { Reaction } from "../Posts/reactions";
 
 export default function CommentsModal({
   postData,
   onClose,
+  onShowOptions,
+  onClosePost,
+  onShowComments,
+  onShowShare,
+  onShowReactions,
+  onHideReactions,
+  showReactions,
+  onReact,
 }: {
   postData: PostData;
   onClose: () => void;
+  onShowOptions: () => void;
+  onReact: (reaction: Reaction) => void;
+  onClosePost: () => void;
+  onShowComments: () => void;
+  onShowShare: () => void;
+  onShowReactions: () => void;
+  onHideReactions: () => void;
+  showReactions: boolean;
 }) {
   const [commentText, setCommentText] = useState("");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -61,14 +78,14 @@ export default function CommentsModal({
         <div className="border-b border-gray-200">
           <Post
             postData={postData}
-            onShowOptions={() => {}}
-            onClosePost={() => {}}
-            onShowComments={() => {}}
-            onShowShare={() => {}}
-            onShowReactions={() => {}}
-            onHideReactions={() => {}}
-            showReactions={false}
-            onReact={() => {}}
+            onShowOptions={onShowOptions}
+            onClosePost={onClosePost}
+            onShowComments={onShowComments}
+            onShowShare={onShowShare}
+            onShowReactions={onShowReactions}
+            onHideReactions={onHideReactions}
+            showReactions={showReactions}
+            onReact={onReact}
           />
         </div>
 

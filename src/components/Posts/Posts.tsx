@@ -40,10 +40,10 @@ export default function Posts() {
         {posts.map((post) => (
           <Post
             key={post.id}
+            postData={post}
             onReact={(reaction: Reaction) => {
               handleAddLike(post.id, reaction);
             }}
-            postData={post}
             onShowOptions={() => setShowOptionsModal(post.id)}
             onClosePost={() => handleClosePost(post.id)}
             onShowComments={() => setShowCommentsModal(post.id)}
@@ -72,6 +72,20 @@ export default function Posts() {
         <CommentsModal
           postData={posts.find((p) => p.id === showCommentsModal)!}
           onClose={() => setShowCommentsModal(null)}
+          onReact={(reaction: Reaction) => {
+            handleAddLike(showCommentsModal, reaction);
+          }}
+          onShowOptions={() => setShowOptionsModal(showCommentsModal)}
+          onClosePost={() => handleClosePost(showCommentsModal)}
+          onShowComments={() => setShowCommentsModal(showCommentsModal)}
+          onShowShare={() => setShowShareModal(showCommentsModal)}
+          onShowReactions={() => {
+            setShowReactions(showCommentsModal);
+          }}
+          onHideReactions={() => {
+            setShowReactions(null);
+          }}
+          showReactions={showReactions === showCommentsModal}
         />
       )}
 
