@@ -39,6 +39,7 @@ export default function Posts() {
       <div className="flex flex-col w-full h-fit gap-4">
         {posts.map((post) => (
           <Post
+            isModal={false}
             key={post.id}
             postData={post}
             onReact={(reaction: Reaction) => {
