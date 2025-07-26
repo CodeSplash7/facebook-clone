@@ -16,6 +16,7 @@ export default function Post({
   onHideReactions,
   showReactions,
   onReact,
+  isModal,
 }: {
   postData: PostData;
   onShowOptions: () => void;
@@ -26,10 +27,12 @@ export default function Post({
   onShowReactions: () => void;
   onHideReactions: () => void;
   showReactions: boolean;
+  isModal: boolean;
 }) {
   return (
     <div className="flex flex-col h-fit w-full bg-white md:rounded-lg shadow-sm border border-gray-200">
       <PostHeader
+        isModal={isModal}
         postData={postData}
         onShowOptions={onShowOptions}
         onClosePost={onClosePost}
@@ -39,6 +42,7 @@ export default function Post({
       <PostStats postData={postData} />
       <div className="h-px bg-gray-200 mx-4"></div>
       <PostActions
+        isModal={isModal}
         onReact={onReact}
         onShowComments={onShowComments}
         onShowShare={onShowShare}

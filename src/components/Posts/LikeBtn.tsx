@@ -6,11 +6,13 @@ export default function LikeBtn({
   onHideReactions,
   showReactions,
   onReact,
+  isModal,
 }: {
   onShowReactions: () => void;
   onHideReactions: () => void;
   showReactions: boolean;
   onReact: (reaction: Reaction) => void;
+  isModal: boolean;
 }) {
   const likeBtnRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +42,7 @@ export default function LikeBtn({
       }}
       className="relative flex-1"
     >
-      {showReactions && <Reactions onReact={onReact} />}
+      {showReactions && <Reactions isModal={isModal} onReact={onReact} />}
       <button className="action-button flex items-center gap-2 py-2 px-4 rounded-lg hover:bg-gray-100 w-full justify-center text-gray-600 transition-colors duration-200">
         <svg
           className="w-5 h-5"
@@ -61,9 +63,18 @@ export default function LikeBtn({
   );
 }
 
-function Reactions({ onReact }: { onReact: (reaction: Reaction) => void }) {
+function Reactions({
+  onReact,
+  isModal,
+}: {
+  onReact: (reaction: Reaction) => void;
+  isModal: boolean;
+}) {
   return (
-    <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg border p-2 flex gap-1 z-10 text-[30px]">
+    <div
+      style={{ zIndex: isModal ? 9999 : 1 }}
+      className="absolute bottom-12 bg-white rounded-full shadow-lg p-[2px] flex gap-1 text-[30px] items-center h-fit"
+    >
       {(Object.keys(reactions) as Array<Reaction>).map((i) => (
         <button
           onClick={() => onReact(i)}

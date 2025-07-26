@@ -70,13 +70,14 @@ export default function CommentsModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-white/50 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-2xl h-[95vh] flex flex-col shadow-xl border border-gray-200 rounded-lg overflow-y-auto">
         <CloseModal onClose={onClose} />
 
         {/* Post component */}
         <div className="border-b border-gray-200">
           <Post
+            isModal
             postData={postData}
             onShowOptions={onShowOptions}
             onClosePost={onClosePost}

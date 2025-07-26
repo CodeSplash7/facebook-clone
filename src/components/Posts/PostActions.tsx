@@ -8,6 +8,7 @@ export default function PostActions({
   onHideReactions,
   showReactions,
   onReact,
+  isModal,
 }: {
   onReact: (reaction: Reaction) => void;
   onShowComments: () => void;
@@ -15,10 +16,12 @@ export default function PostActions({
   onShowReactions: () => void;
   onHideReactions: () => void;
   showReactions: boolean;
+  isModal: boolean;
 }) {
   return (
     <div className="px-4 py-1 flex justify-around relative">
       <LikeBtn
+        isModal={isModal}
         onReact={onReact}
         onShowReactions={onShowReactions}
         onHideReactions={onHideReactions}
