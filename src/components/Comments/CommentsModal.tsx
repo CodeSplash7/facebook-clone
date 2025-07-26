@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { PostData } from "@components/Posts/types";
 import Post from "@components/Posts/Post";
-import CloseModal from "./CloseModal";
 import SortDropdown from "./SortDropdown";
 import { SortOption } from "./types";
-import { mockComments } from "./commentsData";
-import MainComment from "./MainComment";
-import RepliesSection from "./RepliesSection";
-import ReplyInput from "./ReplyInput";
 import { Reaction } from "../Posts/reactions";
 import ModalTitle from "./ModalTitle";
+import CommentInput from "./CommentInput";
+import CommentsList from "./CommentsList";
+import { mockComments } from "./commentsData";
 
 export default function CommentsModal({
   postData,
@@ -92,7 +90,7 @@ export default function CommentsModal({
         </div>
 
         {/* Comments section */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col ">
           <SortDropdown
             setShowSortDropdown={setShowSortDropdown}
             showSortDropdown={showSortDropdown}
@@ -100,78 +98,22 @@ export default function CommentsModal({
             setSortOption={setSortOption}
           />
           {/* Comments list */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {mockComments.map((comment) => (
-              <div key={comment.id} className="relative">
-                <MainComment
-                  comment={comment}
-                  setReplyingToComment={setReplyingToComment}
-                />
-                {replyingToComment !== comment.id && (
-                  <RepliesSection
-                    comment={comment}
-                    expandedReplies={expandedReplies}
-                    toggleReplies={toggleReplies}
-                    setReplyingToComment={setReplyingToComment}
-                  />
-                )}
-
-                {replyingToComment === comment.id && (
-                  <ReplyInput
-                    comment={comment}
-                    replyText={replyText}
-                    setReplyText={setReplyText}
-                    handleSendReply={handleSendReply}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
+          <CommentsList
+            comments={mockComments}
+            replyingToComment={replyingToComment}
+            setReplyingToComment={setReplyingToComment}
+            expandedReplies={expandedReplies}
+            toggleReplies={toggleReplies}
+            setReplyText={setReplyText}
+            replyText={replyText}
+            handleSendReply={handleSendReply}
+          />
           {/* Comment input */}
-          <div className="border-t border-gray-200 p-4">
-            <div className="flex gap-3">
-              <div className="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
-                U
-              </div>
-              <div className="flex-1 bg-gray-100 rounded-2xl px-4 py-3">
-                <input
-                  type="text"
-                  placeholder="Write a comment..."
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                  className="w-full bg-transparent outline-none text-sm"
-                />
-                <div className="flex items-center justify-between mt-3">
-                  <div className="flex gap-4">
-                    <button className="text-gray-500 hover:text-gray-700 text-lg">
-                      😊
-                    </button>
-                    <button className="text-gray-500 hover:text-gray-700 text-lg">
-                      📷
-                    </button>
-                    <button className="text-gray-500 hover:text-gray-700 text-lg">
-                      🎬
-                    </button>
-                    <button className="text-gray-500 hover:text-gray-700 text-xs font-semibold">
-                      GIF
-                    </button>
-                  </div>
-                  <button
-                    onClick={handleSendComment}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
-                      commentText.trim()
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    }`}
-                    disabled={!commentText.trim()}
-                  >
-                    Send
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CommentInput
+            commentText={commentText}
+            setCommentText={setCommentText}
+            handleSendComment={handleSendComment}
+          />
         </div>
       </div>
     </div>
