@@ -1,3 +1,5 @@
+import { Comment } from "../Comments/types";
+
 export type PostData = {
   id: number;
   user: string;
@@ -15,6 +17,6 @@ export type PostData = {
     sad: number;
     angry: number;
   };
-  comments: number;
+  comments: Comment[];
   shares: number;
 };

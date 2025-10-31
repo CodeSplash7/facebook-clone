@@ -1,9 +1,8 @@
-
 export interface Comment {
   id: number;
   user: string;
   text: string;
-  time: string;
+  time: Date;
   likes: number;
   replies: Reply[];
   isLiked: boolean;

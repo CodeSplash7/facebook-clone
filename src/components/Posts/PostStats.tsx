@@ -20,7 +20,7 @@ export default function PostStats({ postData }: { postData: PostData }) {
       </div>
       <div className="flex gap-4">
         <span className="cursor-pointer hover:underline">
-          {postData.comments} comments
+          {postData.comments.length} comments
         </span>
         <span className="cursor-pointer hover:underline">
           {postData.shares} shares
